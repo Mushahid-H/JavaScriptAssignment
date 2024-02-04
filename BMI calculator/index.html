@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BMI Calculator</title>
+
+    <style>
+      body {
+        background-color: black;
+        text-align: center;
+        color: white;
+      }
+      h1 {
+        font-size: bold;
+        color: white;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .input {
+        margin: 10px;
+      }
+
+      button {
+        margin: 10px;
+
+        height: 40px;
+        width: 100px;
+        border-radius: 10px;
+        box-shadow: 2px 5px 5px black;
+      }
+      input {
+        height: 30px;
+        width: 200px;
+        border-radius: 10px;
+      }
+      .result {
+        margin-top: 30px;
+        margin-bottom: 30px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <h1>BMI Calculator</h1>
+
+      <form action="">
+        <div class="input">
+          <label for="#hgt">Height in CM: </label>
+          <input id="hgt" type="number" />
+        </div>
+        <div class="input">
+          <label for="#wgt">Weight in KG: </label>
+          <input id="wgt" type="number" />
+        </div>
+      </form>
+
+      <button onclick="calculateBMI()">Calculate</button>
+
+      <div class="result">
+        <div>Result: Your BMI is: <span id="result">0</span></div>
+      </div>
+      <div class="guidelines">
+        <h3>Guidelines</h3>
+        <p>Underweight: BMI &lt; 18.5</p>
+        <p>Normal: BMI &gt; 18.5 and &lt; 24.9</p>
+        <p>Overweight: BMI &gt; 24.9</p>
+      </div>
+    </div>
+  </body>
+
+  <script>
+    function calculateBMI() {
+      const height = document.getElementById('hgt')
+      const weight = document.getElementById('wgt')
+      let bmi = 0
+
+      height.value <= 0 || weight.value <= 0
+        ? alert('Please enter both height and weight')
+        : (bmi = (weight.value / (height.value / 100) ** 2).toFixed(2))
+
+      const result = (document.querySelector(
+        '.result'
+      ).innerText = `Result: Your BMI is: ${bmi}`)
+    }
+  </script>
+</html>

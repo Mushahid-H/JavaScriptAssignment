@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Clock</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: black;
+        color: white;
+      }
+      .time > h5 {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: white;
+      }
+      .timer {
+        text-align: center;
+        font-size: 1rem;
+        font-weight: bold;
+        color: white;
+        background-color: rgb(20, 136, 11);
+        padding: 10px;
+        height: 20px;
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main">
+      <div class="time">
+        <h5>Local Time</h5>
+        <div class="timer"></div>
+      </div>
+    </div>
+  </body>
+  <script>
+    const time = document.querySelector('.timer')
+
+    setInterval(() => {
+      const date = new Date()
+      time.innerText = date.toLocaleTimeString()
+    }, 1000)
+  </script>
+</html>

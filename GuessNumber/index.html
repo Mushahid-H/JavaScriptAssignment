@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Guess The Number</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: black;
+        color: white;
+      }
+      input {
+        height: 30px;
+        width: 200px;
+        border-radius: 10px;
+        padding: 5px;
+      }
+      button {
+        margin: 10px;
+        height: 40px;
+        width: 100px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="main-section">
+      <h1>Guess the a number</h1>
+      <h3>Enter a number between 1 and 100</h3>
+      <h4>You have 5 chances</h4>
+      <div class="form">
+        <input type="text" />
+        <button type="submit">Submit guess</button>
+      </div>
+      <div class="cals">
+        <h3 class="chances">Chances left: <span>5</span></h3>
+        <h3 class="prevGuess">Previous guesses: <span></span></h3>
+      </div>
+      <div class="lowOrhigh"></div>
+    </div>
+  </body>
+
+  <script>
+    let chancesLeft = 5
+    let hiddenNumber = Math.ceil(Math.random() * 100 + 1)
+    const submit = document.getElementsByTagName('button')[0]
+    const chances = document.getElementsByClassName('chances')[0]
+    const prevGuess = document.querySelector('.prevGuess span')
+    const lowOrhigh = document.querySelector('.lowOrhigh')
+    const playagain = document.createElement('button')
+    submit.addEventListener('click', () => {
+      const numberguessed = parseInt(
+        document.getElementsByTagName('input')[0].value
+      )
+
+      if (isNaN(numberguessed) || numberguessed < 1 || numberguessed > 100) {
+        alert('Please enter a number between 1 and 100')
+      } else {
+        if (numberguessed == hiddenNumber) {
+          lowOrhigh.innerText = 'Congratulations! You guessed the number'
+          lowOrhigh.style.color = 'green'
+          submit.disabled = true
+          submit.style.color = 'white'
+        } else {
+          chancesLeft--
+          if (chancesLeft === 0) {
+            lowOrhigh.innerText = `Game over! The number was ${hiddenNumber}`
+            lowOrhigh.style.color = 'red'
+            submit.disabled = true
+
+            playagain.innerText = 'Play again'
+            playagain.style.margin = '10px'
+            playagain.style.height = '40px'
+            playagain.style.width = '100px'
+            playagain.style.borderRadius = '10px'
+            document.querySelector('.main-section').appendChild(playagain)
+            playagain.addEventListener('click', () => {
+              chancesLeft = 5
+              hiddenNumber = Math.ceil(Math.random() * 100 + 1)
+              lowOrhigh.innerText = ''
+              submit.disabled = false
+              submit.style.color = 'black'
+              prevGuess.innerText = ''
+              document.getElementsByTagName('input')[0].value = ''
+              chances.innerText = `Chances left: ${chancesLeft}`
+            })
+          } else {
+            lowOrhigh.innerText = `Wrong guess! your number is too ${
+              numberguessed < hiddenNumber ? 'low' : 'high'
+            }`
+            lowOrhigh.style.color = 'red'
+            prevGuess.innerText += `${numberguessed}, `
+            chances.innerText = `Chances left: ${chancesLeft}`
+          }
+        }
+      }
+    })
+  </script>
+</html>

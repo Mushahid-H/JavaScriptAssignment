@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Color Changer</title>
+
+    <style>
+      body {
+        text-align: center;
+      }
+      div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        gap: 10px;
+      }
+      .button {
+        height: 100px;
+        width: 100px;
+      }
+      #grey {
+        background-color: grey;
+        border: 2px solid black;
+      }
+      #white {
+        background-color: white;
+        border: 2px solid black;
+      }
+      #blue {
+        background-color: blue;
+        border: 2px solid black;
+      }
+      #yellow {
+        background-color: yellow;
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Color Changer</h1>
+    <div>
+      <!-- my own way -->
+      <!-- <div onclick="changeColor('grey')" class="button" id="grey"></div>
+      <div onclick="changeColor('white')" class="button" id="white"></div>
+      <div onclick="changeColor('blue')" class="button" id="blue"></div>
+      <div onclick="changeColor('yellow')" class="button" id="yellow"></div> -->
+
+      <!-- video's way -->
+      <div class="button" id="grey"></div>
+      <div class="button" id="white"></div>
+      <div class="button" id="blue"></div>
+      <div class="button" id="yellow"></div>
+    </div>
+  </body>
+  <!-- my own way -->
+  <!-- <script>
+    function changeColor(color) {
+      document.body.style.backgroundColor = color
+    }
+  </script> -->
+
+  <!-- video's way -->
+  <script>
+    let buttons = document.querySelectorAll('.button')
+    let body = document.querySelector('body')
+    buttons = Array.from(buttons)
+    buttons.map((button) => {
+      button.addEventListener('click', (e) => {
+        body.style.backgroundColor = e.target.id
+      })
+    })
+  </script>
+</html>
