@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Infinite Backgrounds</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: grey;
+      }
+      h1 {
+        font-family: 'Arial', sans-serif;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+      }
+      .button {
+        padding: 1rem 2rem;
+        margin: 0 1rem;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        color: #333;
+        transition: all 0.3s ease;
+      }
+      .button:hover {
+        background-color: #333;
+        color: #f0f0f0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>Background Changer</h1>
+    <div>
+      <button class="button" id="start">Start</button>
+      <button class="button" id="stop">Stop</button>
+    </div>
+  </body>
+
+  <script>
+    let intervalId = ''
+    const startIt = document.getElementById('start')
+    const stopIt = document.getElementById('stop')
+    console.log(stopIt)
+
+    function changeBackground() {
+      let color = ''
+      const hexValue = Math.floor(Math.random() * 16)
+      const hexString = '12345678910ABCDEF'
+
+      for (let i = 0; i < 6; i++) {
+        color += hexString[Math.floor(Math.random() * 16)]
+      }
+
+      document.body.style.backgroundColor = `#${color}`
+    }
+
+    startIt.addEventListener('click', () => {
+      if (!intervalId) {
+        intervalId = setInterval(changeBackground, 1000)
+      }
+    })
+
+    stopIt.addEventListener('click', () => {
+      clearInterval(intervalId)
+      intervalId = null
+    })
+  </script>
+</html>
