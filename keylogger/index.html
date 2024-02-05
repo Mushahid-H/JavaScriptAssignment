@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Keylogger</title>
+
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: grey;
+      }
+      h1 {
+        font-family: 'Arial', sans-serif;
+        font-size: 3rem;
+        margin-bottom: 2rem;
+      }
+      .insert {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .key {
+        padding: 1rem 2rem;
+        margin: 0 1rem;
+        font-size: 1.5rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        background-color: #f0f0f0;
+        color: #333;
+        transition: all 0.3s ease;
+      }
+      .key:hover {
+        background-color: #333;
+        color: #f0f0f0;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="insert">
+      <h1>key logger</h1>
+      <div class="key"></div>
+    </div>
+  </body>
+  <script>
+    let keys = document.querySelector('.key')
+    window.addEventListener('keydown', (e) => {
+      keys.innerHTML += e.key
+    })
+  </script>
+</html>
